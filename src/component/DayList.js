@@ -1,6 +1,6 @@
 // import dummy from '../db/data.json'
 import { Link } from "react-router-dom"
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import useFetch from "../hooks/useFetch";
 
 export default function DayList() {
