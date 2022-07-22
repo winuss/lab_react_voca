@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 import Word from './Word';
 import useFetch from '../hooks/useFetch'
-
+import { useNavigate } from "react-router-dom";
 
 export default function Day() {
     const { day } = useParams();
@@ -21,6 +21,19 @@ export default function Day() {
     // }, [day])
 
     const words = useFetch(`http://localhost:3001/words?day=${day}`)
+    const navigate = useNavigate();
+
+    function next() {
+        navigate(`/day/${Number(day)+1}`);
+    }
+
+    function prev() {
+        navigate(`/day/${Number(day)-1}`);
+    }
+
+    if(words.length === 0) {
+        return <span>Loading...</span>
+    }
     
     return (
         <>
@@ -32,6 +45,9 @@ export default function Day() {
                     ))}
                 </tbody>
             </table>
+
+            <button onClick={prev}>이전</button>
+            <button onClick={next}>다음</button>
         </>
     )
 }
