@@ -1,11 +1,12 @@
 // import dummy from "../db/data.json";
+import React from 'react';
 import { useParams } from "react-router-dom";
-import Word from './Word';
+import Word, { IWord } from './Word';
 import useFetch from '../hooks/useFetch'
 import { useNavigate } from "react-router-dom";
 
 export default function Day() {
-    const { day } = useParams();
+    const { day } = useParams<{ day: string }>();
     // const wordList = dummy.words.filter(word=> word.day === Number(day));
 
     // const [words, setWords] = useState([]);
@@ -20,7 +21,7 @@ export default function Day() {
     //         })
     // }, [day])
 
-    const words = useFetch(`http://localhost:3001/words?day=${day}`)
+    const words: IWord[] = useFetch(`http://localhost:3001/words?day=${day}`)
     const navigate = useNavigate();
 
     function next() {
